@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduVista - Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+    }
+
+    .login-container h1 {
+      font-size: 2rem;
+      color: #4f46e5;
+      margin-bottom: 10px;
+    }
+
+    .login-container p {
+      color: #6b7280;
+      margin-bottom: 30px;
+      font-size: 0.9rem;
+    }
+
+    .input-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      font-size: 0.9rem;
+      color: #374151;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .input-group input:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+    }
+
+    .login-btn {
+      width: 100%;
+      background: #4f46e5;
+      color: #fff;
+      padding: 12px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .login-btn:hover {
+      background: #4338ca;
+    }
+
+    .extra-links {
+      margin-top: 20px;
+      font-size: 0.85rem;
+    }
+
+    .extra-links a {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .extra-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1>EduVista</h1>
+    <p>Welcome back! Please login to continue.</p>
+    <form method="POST">
+      {% csrf_token %}
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+    <div class="extra-links">
+      <p>Don’t have an account? <a href="{% url 'signup' %}">sign up</a></p>
+      <p><a href="#">Forgot Password?</a></p>
+    </div>
+    {% if messages %}
+  <div class="space-y-2 mb-4">
+    {% for message in messages %}
+      <div 
+        class="p-3 rounded-lg text-white 
+               {% if message.tags == 'success' %} bg-green-500 
+               {% elif message.tags == 'error' %} bg-red-500 
+               {% elif message.tags == 'warning' %} bg-yellow-500 
+               {% else %} bg-blue-500 {% endif %}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+  </div>
+</body>
+</html>

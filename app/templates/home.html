@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EduVista - Teacher Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="max-w-3xl mx-auto mt-12 bg-white p-8 rounded-lg shadow">
+    {% if teacher %}
+      <h1 class="text-3xl font-bold text-indigo-600 mb-6">
+        Welcome, {{ teacher.first_name }} {{ teacher.last_name }} 👋
+      </h1>
+
+      <div class="space-y-2">
+        <p><span class="font-semibold">Email:</span> {{ email }}</p>
+        <p><span class="font-semibold">Designation:</span> {{ teacher.designation }}</p>
+        <p><span class="font-semibold">Education:</span> {{ teacher.education }}</p>
+        <p><span class="font-semibold">Phone:</span> {{ teacher.ph }}</p>
+        <p><span class="font-semibold">Salary:</span> ₹{{ teacher.salary }}</p>
+        <p><span class="font-semibold">Address:</span> {{ teacher.address }}</p>
+        <p><span class="font-semibold">Gender:</span> {{ teacher.gender }}</p>
+      </div>
+    {% else %}
+      <p class="text-gray-600">No teacher details found.</p>
+    {% endif %}
+    <a href="{% url 'logout' %}" class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 block text-center">
+  LOGOUT
+</a>
+  </div>
+</body>
+</html>
